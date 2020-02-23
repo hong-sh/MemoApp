@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".view.MemoWriteFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/layout_padding">
+
+
+        <RelativeLayout
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/layout_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/button_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:src="@drawable/ic_close"
+                android:layout_alignParentLeft="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:id="@+id/textView_hidden_title"
+                android:visibility="gone"
+                android:clickable="true"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"/>
+
+            <ImageView
+                android:layout_toLeftOf="@+id/button_complete"
+                android:id="@+id/button_add_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:src="@drawable/ic_add_a_photo"
+                android:layout_marginRight="20dp"/>
+
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:id="@+id/button_complete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:src="@drawable/ic_check"/>
+
+        </RelativeLayout>
+
+        <EditText
+            android:layout_below="@+id/layout_menu"
+            android:id="@+id/editText_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/title_size"
+            android:singleLine="true"
+            android:layout_marginLeft="10dp"
+            android:hint="Title"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_image"
+            android:layout_below="@+id/editText_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"/>
+
+        <EditText
+            android:id="@+id/editText_contents"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="contents"
+            android:lineSpacingMultiplier="1.5"
+            android:gravity="top|left"
+            android:paddingRight="15dp"
+            android:paddingLeft="15dp"
+            android:paddingBottom="10dp"
+            android:textSize="@dimen/contents_size"
+            android:layout_below="@+id/recyclerView_image"/>
+
+
+    </RelativeLayout>
+
+
+    <include layout="@layout/image_add"/>
+
+    <include layout="@layout/image_crop"/>
+
+
+</RelativeLayout>

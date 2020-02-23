@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">오늘하루</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="reqeust_permission">모든 권한 요청에 동의하셔 앱 이용이 가능합니다.\n앱 설정에서 권한을 허용하시길 바랍니다.</string>
+    <string name="complete_str">완료</string>
+    <string name="edit_str">수정</string>
+    <string name="picture_str">사진</string>
+    <string name="picture_url_error_str">이미지를 가져오는데 실패했습니다.\nURL이나 인터넷 연결을 확인하세요.</string>
+    <string name="request_title_input">기록의 제목을 입력해주세요.</string>
+</resources>

@@ -1,0 +1,7 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="layout_padding">10dp</dimen>
+    <dimen name="title_size">23sp</dimen>
+    <dimen name="contents_size">18sp</dimen>
+    <dimen name="date_size">12sp</dimen>
+</resources>
