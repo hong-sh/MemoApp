@@ -27,6 +27,7 @@
         android:layout_gravity="center"
         android:visibility="visible"/>
 
+    <!-- Splash Image -->
     <ImageView
         android:id="@+id/imageView_loading"
         android:layout_width="match_parent"

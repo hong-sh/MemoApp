@@ -1,6 +1,5 @@
 package com.hongdroid.memoapp.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Paint;
@@ -57,10 +56,12 @@ public class MemoRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
         MemoItem memoItem = memoItemList.get(position);
         MemoRecyclerViewHolder viewHolder = (MemoRecyclerViewHolder)holder;
         byte[] thumbNailImage = memoItem.getThumbNail();
+        // Set ThumbNail ImageView VISIBLE When ImageList size > 0
         if(thumbNailImage != null) {
-                viewHolder.thumbNailImageView.setVisibility(View.VISIBLE);
+            viewHolder.thumbNailImageView.setVisibility(View.VISIBLE);
             viewHolder.thumbNailImageView.setImageBitmap(BitmapFactory.decodeByteArray(thumbNailImage, 0, thumbNailImage.length));
         }
+        // Trim Title String
         String titleStr = memoItem.getTitle();
         if(titleStr.length() > 10)
         {
@@ -68,6 +69,7 @@ public class MemoRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
             titleStr +="...";
         }
         String dateStr = new SimpleDateFormat("yy년 MM월 dd일 HH시 mm분의 기록").format(DateTimeConverter.fromTimeStamp(memoItem.getUpdateDate()));
+        // Trim Contents FirstLine String
         String contentFirstLineStr = memoItem.getContents().split("\n")[0];
         if(contentFirstLineStr.length() > 25)
         {

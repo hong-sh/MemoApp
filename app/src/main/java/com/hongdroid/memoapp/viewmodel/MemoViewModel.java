@@ -1,7 +1,6 @@
 package com.hongdroid.memoapp.viewmodel;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -13,9 +12,7 @@ import com.hongdroid.memoapp.model.Memo;
 import com.hongdroid.memoapp.model.MemoItem;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Date;
 
 public class MemoViewModel extends ViewModel {
 
@@ -53,6 +50,7 @@ public class MemoViewModel extends ViewModel {
         new UpdateMemoTask(memoDB.memoDao()).execute(oldMemo, newMemo);
     }
 
+    // Get All Memo List Async Task For MemoListFragment
     private class GetMemoListTask extends AsyncTask<Void, Void, ArrayList<MemoItem>>
     {
         private MemoDao memoDao;
@@ -86,6 +84,7 @@ public class MemoViewModel extends ViewModel {
         }
     }
 
+    // Insert Memo Async Task For MemoWriteFragment
     private class AddMemoTask extends AsyncTask<MemoItem, Void, ArrayList<MemoItem>>
     {
         private MemoDao memoDao;
@@ -125,6 +124,7 @@ public class MemoViewModel extends ViewModel {
         }
     }
 
+    // Delete Memo Async Task For MemoDetailFragment
     private class DeleteMemoTask extends AsyncTask<MemoItem, Void, ArrayList<MemoItem>>
     {
         private MemoDao memoDao;
@@ -161,6 +161,7 @@ public class MemoViewModel extends ViewModel {
         }
     }
 
+    // Edit Memo Async Task For MemoWriteFragment
     private class UpdateMemoTask extends AsyncTask<MemoItem, Void, ArrayList<MemoItem>>
     {
         private MemoDao memoDao;

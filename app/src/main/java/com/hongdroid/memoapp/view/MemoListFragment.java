@@ -8,16 +8,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hongdroid.memoapp.R;
 import com.hongdroid.memoapp.adapter.MemoRecyclerViewAdapter;
-import com.hongdroid.memoapp.dao.DateTimeConverter;
 import com.hongdroid.memoapp.model.MemoItem;
 
 import java.text.SimpleDateFormat;
@@ -43,6 +40,7 @@ public class MemoListFragment extends Fragment implements MemoRecyclerViewAdapte
         return new MemoListFragment(memoItemList);
     }
 
+    // Set MemoItemList to Adapter And Update View Through NotifyDataChanged
     public void setMemoItemList(ArrayList<MemoItem> memoItemList)
     {
         this.memoItemList = memoItemList;

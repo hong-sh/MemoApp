@@ -9,6 +9,7 @@
     android:padding="@dimen/layout_padding">
 
 
+    <!-- Design Top Menu Button View -->
     <RelativeLayout
         android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp"
@@ -45,6 +46,7 @@
     </RelativeLayout>
 
 
+    <!-- Design View For Memo Contents -->
     <TextView
         android:id="@+id/textView_title"
         android:layout_width="match_parent"

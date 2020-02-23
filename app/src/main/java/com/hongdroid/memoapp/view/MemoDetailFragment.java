@@ -22,7 +22,6 @@ import com.hongdroid.memoapp.dao.DateTimeConverter;
 import com.hongdroid.memoapp.model.MemoItem;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 
 public class MemoDetailFragment extends Fragment implements View.OnClickListener {
@@ -90,6 +89,8 @@ public class MemoDetailFragment extends Fragment implements View.OnClickListener
     public void onClick(View view) {
         switch (view.getId())
         {
+            // Request Delete Confirm to User using Dialog
+            // And Call DeleteListener When OK
             case R.id.button_delete:
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getContext(), R.style.Theme_AppCompat_DayNight_Dialog_MinWidth);
                 dialogBuilder
@@ -107,6 +108,7 @@ public class MemoDetailFragment extends Fragment implements View.OnClickListener
                 dialogBuilder.create().show();
                 break;
             case R.id.button_edit:
+                // Call EditListener With EditMemoItem
                 detailMemoListener.onEditMemoListener(memoItem);
                 break;
             case R.id.button_complete:

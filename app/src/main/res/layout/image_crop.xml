@@ -8,6 +8,8 @@
         android:visibility="gone">
 
 
+    <!-- Set Image Crop View -->
+
         <com.isseiaoki.simplecropview.CropImageView
             xmlns:custom="http://schemas.android.com/apk/res-auto"
             android:id="@+id/cropImageView"

@@ -13,6 +13,7 @@
     android:elevation="15dp"
     android:background="@color/colorAccent">
 
+    <!-- Bottom Image Add View -->
 
 <ImageView
     android:id="@+id/button_camera"

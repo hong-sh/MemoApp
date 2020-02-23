@@ -1,7 +1,6 @@
 package com.hongdroid.memoapp.view;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
@@ -21,7 +20,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.room.Room;
 
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,7 +33,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements LifecycleOwner , MemoListFragment.RecyclerViewItemClickListener,
         MemoWriteFragment.WriteMemoListener, MemoDetailFragment.DetailMemoListener, FragmentManager.OnBackStackChangedListener {
 
-
+    // Permission List For Write Memo
     private String[] permissions = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
     private static final int PERMISSION_RESULT_CODE = 101;
 
@@ -74,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements LifecycleOwner , 
         });
     }
 
+    // Request Grant Permission to User
     private void checkPermissions()
     {
         List<String> permissionRequestList = new ArrayList<>();
@@ -112,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements LifecycleOwner , 
         getSupportFragmentManager().addOnBackStackChangedListener(this);
     }
 
+    // Update MemoList to MemoListFragment When LiveMemoDataList Changed
     private Observer<ArrayList<MemoItem>> memoItemUpdateObserver = new Observer<ArrayList<MemoItem>>() {
         @Override
         public void onChanged(ArrayList<MemoItem> memoItemList)
@@ -157,7 +157,8 @@ public class MainActivity extends AppCompatActivity implements LifecycleOwner , 
         return super.onOptionsItemSelected(item);
     }
 
-
+    // Implement MemoRecyclerViewItem Click Listener For MemoListFragment
+    // Replace MemoListFragment to MemoDetailFragment with MemoItem
     @Override
     public void onRecyclerViewItemClickListener(int recyclerViewItemPosition) {
         memoDetailFragment.setMemoItem(memoViewModel.getMemoItem(recyclerViewItemPosition));
@@ -168,12 +169,16 @@ public class MainActivity extends AppCompatActivity implements LifecycleOwner , 
                 .commit();
     }
 
+    // Implement MemoWirteButton Click Listener For MemoWriteFragment
+    // Execute AddMemo Through MemoViewModel
     @Override
     public void onWriteMemoListener(MemoItem memoItem) {
         memoViewModel.writeMemo(memoDB, memoItem);
         getSupportFragmentManager().popBackStack();
     }
 
+    // Implement MemoWrtieButton Click Listener For MemoWriteFragment
+    // Execute UpdateMemo Through MemoViewModel When EditMemoItem existed
     @Override
     public void onWriteMemoListener(MemoItem editMemoItem, MemoItem memoItem) {
         memoViewModel.updateMemo(memoDB, editMemoItem, memoItem);
@@ -181,6 +186,8 @@ public class MainActivity extends AppCompatActivity implements LifecycleOwner , 
         getSupportFragmentManager().popBackStack();
     }
 
+    // Implement MemoEditButton Click Listener For MemoDetailFragment
+    // Replace MemoDetailFragment to MemoWriteFragment with EditMemoItem
     @Override
     public void onEditMemoListener(MemoItem memoItem) {
         memoWriteFragment.setEditMemoItem(memoItem);
@@ -191,6 +198,8 @@ public class MainActivity extends AppCompatActivity implements LifecycleOwner , 
                 .commit();
     }
 
+    // Implement MemoRemoveButton Click Listener For MemoDetailFragment
+    // Execute RemoveMemo Through MemoViewModel
     @Override
     public void onRemoveMemoListener(MemoItem memoItem) {
         memoViewModel.deleteMemo(memoDB, memoItem);

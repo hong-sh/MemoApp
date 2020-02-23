@@ -13,6 +13,7 @@
         android:padding="@dimen/layout_padding">
 
 
+        <!-- Design Top Menu View -->
         <RelativeLayout
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
@@ -27,16 +28,6 @@
                 android:clickable="true"
                 android:src="@drawable/ic_close"
                 android:layout_alignParentLeft="true"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:id="@+id/textView_hidden_title"
-                android:visibility="gone"
-                android:clickable="true"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"/>
 
             <ImageView
                 android:layout_toLeftOf="@+id/button_complete"
@@ -57,6 +48,8 @@
 
         </RelativeLayout>
 
+
+        <!-- Design Editable Memo Contents View -->
         <EditText
             android:layout_below="@+id/layout_menu"
             android:id="@+id/editText_title"
@@ -65,6 +58,7 @@
             android:textSize="@dimen/title_size"
             android:singleLine="true"
             android:layout_marginLeft="10dp"
+            android:privateImeOptions="defaultInputmode=korean"
             android:hint="Title"/>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -82,6 +76,7 @@
             android:lineSpacingMultiplier="1.5"
             android:gravity="top|left"
             android:paddingRight="15dp"
+            android:privateImeOptions="defaultInputmode=korean"
             android:paddingLeft="15dp"
             android:paddingBottom="10dp"
             android:textSize="@dimen/contents_size"
@@ -90,7 +85,7 @@
 
     </RelativeLayout>
 
-
+    <!-- Set ImageAddView And ImageCropView -->
     <include layout="@layout/image_add"/>
 
     <include layout="@layout/image_crop"/>

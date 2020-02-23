@@ -1,11 +1,9 @@
 package com.hongdroid.memoapp.view;
 
-import android.accessibilityservice.AccessibilityService;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -24,7 +22,6 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hongdroid.memoapp.R;
@@ -101,7 +98,6 @@ public class MemoWriteFragment extends Fragment{
         ((ImageView)rootView.findViewById(R.id.button_cancel)).setOnClickListener(menuButtonClickListener);
         ((ImageView)rootView.findViewById(R.id.button_add_image)).setOnClickListener(menuButtonClickListener);
         ((ImageView)rootView.findViewById(R.id.button_complete)).setOnClickListener(menuButtonClickListener);
-        ((TextView)rootView.findViewById(R.id.textView_hidden_title)).setOnClickListener(menuButtonClickListener);
 
         ((ImageView)rootView.findViewById(R.id.button_camera)).setOnClickListener(imageAddButtonClickListener);
         ((ImageView)rootView.findViewById(R.id.button_gallery)).setOnClickListener(imageAddButtonClickListener);
@@ -114,6 +110,7 @@ public class MemoWriteFragment extends Fragment{
         recyclerViewImage.setAdapter(imageRecyclerViewAdapter);
     }
 
+    // Set EditTextTitle and EditTextContents When EditMemoItem existed
     @Override
     public void onResume() {
         super.onResume();
@@ -144,6 +141,8 @@ public class MemoWriteFragment extends Fragment{
         editMemoItem = null;
     }
 
+    // Camera And Gallery Intent Callback
+    // Call CropImageView With ImageUri
     @Override
     public void onActivityResult(int reqeustCode, int resultCode, Intent data)
     {
@@ -167,11 +166,12 @@ public class MemoWriteFragment extends Fragment{
         }
     }
 
+    // Use Library 'com.isseiaoki:simplecropview:1.1.8'
+    // For Fixed Picture Ratio 1.7 : 1
     private void callCropView(Uri imageSource)
     {
         viewImageAdd.setVisibility(View.GONE);
         viewCropView.setVisibility(View.VISIBLE);
-        // Use Library 'com.isseiaoki:simplecropview:1.1.8'
         cropImageView.setCustomRatio(17, 10);
         cropImageView.load(imageSource)
                 .useThumbnail(true)
@@ -189,6 +189,7 @@ public class MemoWriteFragment extends Fragment{
 
     }
 
+    // Top Menu Button Click Listener
     View.OnClickListener menuButtonClickListener = new View.OnClickListener() {
 
         @Override
@@ -221,6 +222,8 @@ public class MemoWriteFragment extends Fragment{
         }
     };
 
+    // Bottom Image Button Click Listener
+    // This View Pop Up When Top Camera Button
     View.OnClickListener imageAddButtonClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -259,6 +262,7 @@ public class MemoWriteFragment extends Fragment{
         }
     };
 
+    // Create Tmp Image File and Call Camera Intent
     private void getImageFromCamera()
     {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -287,6 +291,7 @@ public class MemoWriteFragment extends Fragment{
 
     }
 
+    // Call Intent to Pick Picture From Gallery
     private void getImageFromGallery()
     {
         Intent intent = new Intent(Intent.ACTION_PICK);
@@ -294,6 +299,8 @@ public class MemoWriteFragment extends Fragment{
         startActivityForResult(intent, INTENT_FLAG_GALLERY);
     }
 
+    // Create Dialog to Input URL
+    // And Call Get ImageData Async Task
     private void getImageFromUrl()
     {
         final EditText editTextURL = new EditText(getContext());
@@ -314,6 +321,8 @@ public class MemoWriteFragment extends Fragment{
         dialogBuilder.create().show();
     }
 
+    // Get ImageData Async Task
+    // Download ImageData From URL BecauseOf ImageCrop
     private class GetImageFromURLTask extends AsyncTask<String, Void, File>
     {
         @Override
@@ -354,11 +363,13 @@ public class MemoWriteFragment extends Fragment{
                 callCropView(imageFromURLUri);
             } else
             {
+                // Exception Notify When Cannot ImageData From URL
                 Toast.makeText(getContext(), R.string.picture_url_error_str , Toast.LENGTH_LONG).show();
             }
         }
     }
 
+    // Create Temp Image File
     private File createImageFile() throws IOException {
 
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());

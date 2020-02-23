@@ -21,6 +21,7 @@
                 android:background="@drawable/imageview_shape"
                 android:clickable="true"/>
 
+            <!-- Remove Image Button For Edit Mode -->
             <ImageView
                 android:id="@+id/button_removeImage"
                 android:layout_margin="1dp"

@@ -31,12 +31,14 @@ public class ImageRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
         this.currentMode = mode;
     }
 
+    // Set ImageList And Update View
     public void setImageList(ArrayList<byte[]> imageList)
     {
         this.imageList = imageList;
         notifyDataSetChanged();
     }
 
+    // Add Image From Camera, Gallery, URL And Update View
     public void addImage(Bitmap image)
     {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -57,6 +59,7 @@ public class ImageRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.
         byte[] memoImage = imageList.get(position);
         ImageRecyclerViewHolder viewHolder = (ImageRecyclerViewHolder)holder;
         viewHolder.imageViewMemoImage.setImageBitmap(BitmapFactory.decodeByteArray(memoImage, 0, memoImage.length));
+        // If MemoWriteFragment mode is Edit, Image Remove Button Active
         if(currentMode == MODE_EDIT) {
             viewHolder.imageViewRemoveImage.setVisibility(View.VISIBLE);
             viewHolder.imageViewRemoveImage.setTag(position);
