@@ -1,2 +1,1 @@
-# MemoApp
-라인 Android 앱 과제
+### MemoApp
